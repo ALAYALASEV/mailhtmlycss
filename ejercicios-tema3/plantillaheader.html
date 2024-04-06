@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML
+ 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ <html lang="es" dir="ltr">
+ <head>
+ <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  /*línea para que en iphone no aumente el tamaño de la fuente*/
+   *{
+       -webkit-text-size-adjust:none; -ms-text-size-adjust:none; max-height:1000000px;
+    }
+    /*no deja que outlook añada algún tipo de espacio en enlaces*/
+    #outlook a {padding:0;}
+      /*son para clientes online como yahoo,gmail y aol*/
+        .ReadMsgBody { width: 100%; }
+        .ExternalClass { width: 100%; }
+        .ExternalClass * { line-height: 100%; }
+      /*ayuda a prevenir los telefonos iOS no conviertan parte del texto*/
+        .ios_geo a { color:#1c1c1c !important; text-decoration:none !important; }
+
+/* responsive styles */
+/*aquí añadimos el limite de ancho que siempre será 600px*/
+@media only screen and (max-width: 600px) {
+  /*esconde ciertos elementos en pantallas pequeñas*/
+    .hide{ display:none !important; display:none;}
+    /*esta permite montar ciertos elementos*/
+     .blockwrap{ display:block !important; }
+    /*esconder elmentos de pantallas grandes a pantallas pequeñas
+      podemos esconder elementos en outlook y que sean visibles en otros*/
+    .showme{ display:block !important; width: auto !important;
+      overflow: visible !important; float: none !important;
+      max-height:inherit !important; max-width:inherit !important;
+      line-height: auto !important; margin-top:0px
+      !important; visibility:inherit !important;}
+/*estas dos líneas van a permitir que podamos mover elementos arriba
+  o abajo de la tabla*/
+*[class].movedown{ display: table-footer-group !important;}
+*[class].moveup{ display: table-header-group !important; }
+/* todo lo que tiene que ver con el texto y las fuentes*/
+*[class].textright{ text-align: right !important; }
+*[class].textleft{ text-align: left !important; }
+*[class].textcenter{ text-align: center !important; }
+/*ajustar tamaño de la fuente en pantallas de teléfonos movil*/
+*[class].font27{ font-size: 27px !important; font-weight:normal !important;
+                 line-height:27px !important; }
+
+                 /* anchos y altos */
+*[class].h10{ height:10px !important; }
+*[class].w320{ width:320px !important; }
+}
+</style>
+<!--añadimos reglas css inline aplicadas, para prevenir que gmail o
+  yahoo traten de modificar algunos espacios dentro*/-->
+</head>
+<body style="margin:0; padding:0;" topmargin="0" leftmargin="0" marginheight="0"
+            marginwidth="0">
+<!--código condicional para outlook,previene que trate de aumentar el
+    tamaño de los spacers-->
+
+  <!--[if gte mso 15]>
+  <style type="text/css" media="all">
+  tr { font-size:1px; mso-line-height-alt:0; mso-margin-top-alt:1px; }
+</style>
+<![endif]-->
+<!--propiedades de la tabla contenedora-->
+
+<!--tabla base de nuestra plantilla-->
+<table width="100%" border="0" cellspacing="0" cellpadding="0"
+       bgcolor="#f0fff0">
+  <tr>
+    <!--tabla del header que contendra el resto de tablas de contenido del header -->
+    <td align="center" valign="top">
+      <table width="100%" border="0" cellspacing="0" cellpadding="0"
+       bgcolor="#dce7f0">
+         <tr>
+            <td align="center" valign="top">
+               <!-- Tabla de contenido -->
+               <!--aquí creamos un spacer de 20px con este objeto emulamos un margen superior -->
+              <table width="640px" align="center" >
+                <tr>
+                    <td width="640px">
+                      <img src="imagenes/spacer.gif" alt="" height="20px">
+                    </td>
+                </tr>
+              </table>
+              <!-- Tabla de contenido -->
+              <!-- Aquí metemos el logo en la columna de la izquierda y un texto en la de la derecha-->
+              <table width="640px" align="center" >
+              <tr>
+                <td width="640px">
+                  <table>
+                    <tr>
+                      <td> <img src="imagenes/spacer.gif" alt="" height="20px"> </td>
+                    </tr>
+                  </table>
+                  <table width="640px">
+                    <tr>
+                      <td> <img src="imagenes/logo.png" alt=""> </td>
+                      <td align="right">
+                        <span>Comienza con el curso y aprende a crear emails</span><br>
+                        <spanstyle="font-family:arial; font-size: 12px; color:
+                         #0d133d"><a style="color: #0d133d;
+              text-decoration: underline;" href="#">Version online</a></span>
+                      </td>
+                    </tr>
+                  </table>
+                  <!-- Tabla de contenido -->
+                  <!-- Aquí metemos un spacer de 20px,emulamos que hay margen abajo -->
+                  <table width="640px" align="center" >
+                    <tr>
+                        <td width="640px">
+                          <img src="imagenes/spacer.gif" alt="" height="20px">
+                        </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+            </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+  </table>
+</body>
+</html>
