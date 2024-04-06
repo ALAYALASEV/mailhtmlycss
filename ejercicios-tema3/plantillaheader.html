@@ -43,10 +43,10 @@
 /*ajustar tamaño de la fuente en pantallas de teléfonos movil*/
 *[class].font27{ font-size: 27px !important; font-weight:normal !important;
                  line-height:27px !important; }
-
                  /* anchos y altos */
 *[class].h10{ height:10px !important; }
 *[class].w320{ width:320px !important; }
+*[class].w380{ width:380px !important;}
 }
 </style>
 <!--añadimos reglas css inline aplicadas, para prevenir que gmail o
@@ -65,8 +65,7 @@
 <!--propiedades de la tabla contenedora-->
 
 <!--tabla base de nuestra plantilla-->
-<table width="100%" border="0" cellspacing="0" cellpadding="0"
-       bgcolor="#f0fff0">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#f0fff0">
   <tr>
     <!--tabla del header que contendra el resto de tablas de contenido del header -->
     <td align="center" valign="top">
@@ -85,7 +84,8 @@
               </table>
               <!-- Tabla de contenido -->
               <!-- Aquí metemos el logo en la columna de la izquierda y un texto en la de la derecha-->
-              <table width="640px" align="center" >
+              <!-- Tambien metemos la clase w380 para que cuando el tamaño de la pantalla disminua de 600px no muestre el mensaje y no sature el mensaje-->
+              <table width="640px" align="center" class="w380" >
               <tr>
                 <td width="640px">
                   <table>
@@ -93,10 +93,12 @@
                       <td> <img src="imagenes/spacer.gif" alt="" height="20px"> </td>
                     </tr>
                   </table>
-                  <table width="640px">
+
+                  <table width="640px" class="w380">
                     <tr>
-                      <td> <img src="imagenes/logo.png" alt=""> </td>
-                      <td align="right">
+                      <td class="textcenter"> <img src="imagenes/logo.png" alt=""> </td>
+                      <!-- class hide para ocutar esta columna cuando el tamaño de la pantalla sea menor de 600px-->
+                      <td align="right" class="hide">
                         <span>Comienza con el curso y aprende a crear emails</span><br>
                         <spanstyle="font-family:arial; font-size: 12px; color:
                          #0d133d"><a style="color: #0d133d;
@@ -106,13 +108,32 @@
                   </table>
                   <!-- Tabla de contenido -->
                   <!-- Aquí metemos un spacer de 20px,emulamos que hay margen abajo -->
-                  <table width="640px" align="center" >
+                  <table width="640px" align="center" class="w380">
                     <tr>
                         <td width="640px">
                           <img src="imagenes/spacer.gif" alt="" height="20px">
                         </td>
                     </tr>
                   </table>
+                  	
+                  <!-- Contenedor principal con los bordes curvílineos -->
+                  <table width="640px" border="0" cellpadding="0" cellspacing="0" class="w380" cellmargin="0">
+                    <tr>
+                      <td width="10"><img src="imagenes/PROJEKTO-welcome-DESK_12.png" style="display:block"></td>
+                      <td width="620" bgcolor="#ffffff" class="w360"></td>
+                      <td width="10"><img src="imagenes/PROJEKTO-welcome-DESK_14.png" style="display:block"></td>
+                    </tr>
+                  </table>
+
+                  <!-- Borde de abajo -->
+                  <table width="640px" border="0" cellpadding="0" cellspacing="0" class="w380" cellmargin="0">
+                    <tr>
+                      <td width="10"><img src="imagenes/PROJEKTO-welcome-DESK_82.png" style="display:block"></td>
+                      <td width="620" bgcolor="#ffffff" class="w360"></td>
+                      <td width="10"><img src="imagenes/PROJEKTO-welcome-DESK_84.png" style="display:block"></td>
+                    </tr>
+                  </table>
+
                 </td>
               </tr>
             </table>
