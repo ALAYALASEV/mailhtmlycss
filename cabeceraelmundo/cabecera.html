@@ -1,0 +1,499 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML
+ 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ <html lang="es" dir="ltr">
+ <head>
+ <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  /*este es el primer prototipo de ejemplo de correo electronico*/
+  /*línea para que en iphone no aumente el tamaño de la fuente*/
+   *{
+       -webkit-text-size-adjust:none; -ms-text-size-adjust:none; max-height:1000000px;
+    }
+    /*no deja que outlook añada algún tipo de espacio en enlaces*/
+    #outlook a {padding:0;}
+      /*son para clientes online como yahoo,gmail y aol*/
+        .ReadMsgBody { width: 100%; }
+        .ExternalClass { width: 100%; }
+        .ExternalClass * { line-height: 100%; }
+      /*ayuda a prevenir los telefonos iOS no conviertan parte del texto*/
+        .ios_geo a { color:#1c1c1c !important; text-decoration:none !important; }
+
+/* responsive styles */
+/*aquí añadimos el limite de ancho que siempre será 600px*/
+@media only screen and (max-width: 600px) {
+  /*esconde ciertos elementos en pantallas pequeñas*/
+    .hide{ display:none !important; display:none;}
+    /*esta permite montar ciertos elementos*/
+    .blockwrap{ display:block !important; } 
+    /*esconder elmentos de pantallas grandes a pantallas pequeñas
+      podemos esconder elementos en outlook y que sean visibles en otros*/
+    .showme{ display:block !important; width: auto !important;
+      overflow: visible !important; float: none !important;
+      max-height:inherit !important; max-width:inherit !important;
+      line-height: auto !important; margin-top:0px
+      !important; visibility:inherit !important;}
+/*estas dos líneas van a permitir que podamos mover elementos arriba
+  o abajo de la tabla*/
+*[class].movedown{ display: table-footer-group !important;}
+*[class].moveup{ display: table-header-group !important; }
+/* todo lo que tiene que ver con el texto y las fuentes*/
+*[class].textright{ text-align: right !important; }
+*[class].textleft{ text-align: left !important; }
+*[class].textcenter{ text-align: center !important; }
+/*ajustar tamaño de la fuente en pantallas de teléfonos movil*/
+*[class].font27{ font-size: 27px !important; font-weight:normal !important;
+                 line-height:27px !important; }
+
+                 /* anchos y altos */
+*[class].h10{ height:10px !important; }
+*[class].w320{ width:320px !important; }
+}
+
+* {
+			box-sizing: border-box;
+		}
+
+body {margin: 0; padding: 0;
+		}
+
+		a[x-apple-data-detectors] {
+			color: inherit !important;
+			text-decoration: inherit !important;
+		}
+
+		#MessageViewBody a {
+			color: inherit;
+			text-decoration: none;
+		}
+
+		p {
+			line-height: inherit
+		}
+
+		.desktop_hide,
+		.desktop_hide table {
+			mso-hide: all;
+			display: none;
+			max-height: 0px;
+			overflow: hidden;
+		}
+
+		.image_block img+div {
+			display: none;
+		}
+
+		@media (max-width:620px) {
+
+			.row-10 .column-1 .block-3.button_block .alignment a,
+			.row-10 .column-1 .block-3.button_block .alignment div,
+			.row-10 .column-2 .block-4.button_block .alignment a,
+			.row-10 .column-2 .block-4.button_block .alignment div,
+			.row-11 .column-1 .block-4.button_block .alignment a,
+			.row-11 .column-1 .block-4.button_block .alignment div,
+			.row-11 .column-1 .block-8.button_block .alignment a,
+			.row-11 .column-1 .block-8.button_block .alignment div,
+			.row-15 .column-1 .block-3.button_block .alignment a,
+			.row-15 .column-1 .block-3.button_block .alignment div,
+			.row-16 .column-2 .block-3.button_block .alignment a,
+			.row-16 .column-2 .block-3.button_block .alignment div,
+			.row-17 .column-1 .block-3.button_block .alignment a,
+			.row-17 .column-1 .block-3.button_block .alignment div,
+			.row-18 .column-2 .block-3.button_block .alignment a,
+			.row-18 .column-2 .block-3.button_block .alignment div,
+			.row-19 .column-1 .block-4.button_block .alignment a,
+			.row-19 .column-1 .block-4.button_block .alignment div,
+			.row-2 .column-2 .block-3.button_block .alignment a,
+			.row-2 .column-2 .block-3.button_block .alignment div,
+			.row-20 .column-1 .block-4.button_block .alignment a,
+			.row-20 .column-1 .block-4.button_block .alignment div,
+			.row-21 .column-1 .block-4.button_block .alignment a,
+			.row-21 .column-1 .block-4.button_block .alignment div,
+			.row-3 .column-1 .block-4.button_block .alignment a,
+			.row-3 .column-1 .block-4.button_block .alignment div,
+			.row-4 .column-1 .block-6.button_block .alignment a,
+			.row-4 .column-1 .block-6.button_block .alignment div,
+			.row-5 .column-2 .block-1.button_block .alignment a,
+			.row-5 .column-2 .block-1.button_block .alignment div,
+			.row-6 .column-2 .block-1.button_block .alignment a,
+			.row-6 .column-2 .block-1.button_block .alignment div,
+			.row-7 .column-1 .block-3.button_block .alignment a,
+			.row-7 .column-1 .block-3.button_block .alignment div,
+			.row-7 .column-1 .block-5.button_block .alignment a,
+			.row-7 .column-1 .block-5.button_block .alignment div,
+			.row-8 .column-1 .block-3.button_block .alignment a,
+			.row-8 .column-1 .block-3.button_block .alignment div,
+			.row-9 .column-1 .block-4.button_block .alignment a,
+			.row-9 .column-1 .block-4.button_block .alignment div {
+				display: inline-block !important;
+			}
+
+			.mobile_hide {
+				display: none;
+			}
+
+			.row-content {
+				width: 100% !important;
+			}
+
+			.stack .column {
+				width: 100%;
+				display: block;
+			}
+
+			.mobile_hide {
+				min-height: 0;
+				max-height: 0;
+				max-width: 0;
+				overflow: hidden;
+				font-size: 0px;
+			}
+
+			.desktop_hide,
+			.desktop_hide table {
+				display: table !important;
+				max-height: none !important;
+			}
+
+			.row-2 .column-1 .block-2.divider_block td.pad,
+			.row-5 .column-1 .block-1.divider_block td.pad,
+			.row-6 .column-1 .block-2.divider_block td.pad {
+				padding: 0 10px 15px 15px !important;
+			}
+
+			.row-2 .column-1 .block-2.divider_block .alignment table,
+			.row-3 .column-1 .block-5.divider_block .alignment table,
+			.row-4 .column-1 .block-1.divider_block .alignment table,
+			.row-5 .column-1 .block-1.divider_block .alignment table,
+			.row-6 .column-1 .block-2.divider_block .alignment table,
+			.row-7 .column-1 .block-6.divider_block .alignment table {
+				display: inline-table;
+			}
+
+			.row-12 .column-1 .block-2.paragraph_block td.pad,
+			.row-14 .column-1 .block-1.paragraph_block td.pad,
+			.row-15 .column-1 .block-1.paragraph_block td.pad,
+			.row-16 .column-2 .block-1.paragraph_block td.pad,
+			.row-17 .column-1 .block-1.paragraph_block td.pad,
+			.row-18 .column-2 .block-1.paragraph_block td.pad,
+			.row-19 .column-1 .block-2.paragraph_block td.pad,
+			.row-19 .column-1 .block-3.paragraph_block td.pad,
+			.row-2 .column-1 .block-1.paragraph_block td.pad,
+			.row-20 .column-1 .block-2.paragraph_block td.pad,
+			.row-20 .column-1 .block-3.paragraph_block td.pad,
+			.row-21 .column-1 .block-2.paragraph_block td.pad,
+			.row-21 .column-1 .block-3.paragraph_block td.pad,
+			.row-3 .column-1 .block-1.paragraph_block td.pad,
+			.row-4 .column-1 .block-2.paragraph_block td.pad,
+			.row-4 .column-1 .block-4.paragraph_block td.pad,
+			.row-4 .column-1 .block-5.paragraph_block td.pad {
+				padding: 10px 20px !important;
+			}
+
+			.row-10 .column-1 .block-3.button_block td.pad,
+			.row-10 .column-2 .block-4.button_block td.pad,
+			.row-15 .column-1 .block-3.button_block td.pad,
+			.row-16 .column-2 .block-3.button_block td.pad,
+			.row-17 .column-1 .block-3.button_block td.pad,
+			.row-18 .column-2 .block-3.button_block td.pad,
+			.row-19 .column-1 .block-4.button_block td.pad,
+			.row-2 .column-2 .block-3.button_block td.pad,
+			.row-20 .column-1 .block-4.button_block td.pad,
+			.row-21 .column-1 .block-4.button_block td.pad,
+			.row-3 .column-1 .block-4.button_block td.pad,
+			.row-4 .column-1 .block-6.button_block td.pad,
+			.row-8 .column-1 .block-3.button_block td.pad,
+			.row-9 .column-1 .block-4.button_block td.pad {
+				padding: 10px 10px 0 !important;
+			}
+
+			.row-10 .column-1 .block-3.button_block a,
+			.row-10 .column-1 .block-3.button_block div,
+			.row-10 .column-1 .block-3.button_block span,
+			.row-10 .column-2 .block-4.button_block a,
+			.row-10 .column-2 .block-4.button_block div,
+			.row-10 .column-2 .block-4.button_block span,
+			.row-11 .column-1 .block-4.button_block a,
+			.row-11 .column-1 .block-4.button_block div,
+			.row-11 .column-1 .block-4.button_block span,
+			.row-11 .column-1 .block-8.button_block a,
+			.row-11 .column-1 .block-8.button_block div,
+			.row-11 .column-1 .block-8.button_block span,
+			.row-15 .column-1 .block-3.button_block a,
+			.row-15 .column-1 .block-3.button_block div,
+			.row-15 .column-1 .block-3.button_block span,
+			.row-16 .column-2 .block-3.button_block a,
+			.row-16 .column-2 .block-3.button_block div,
+			.row-16 .column-2 .block-3.button_block span,
+			.row-17 .column-1 .block-3.button_block a,
+			.row-17 .column-1 .block-3.button_block div,
+			.row-17 .column-1 .block-3.button_block span,
+			.row-18 .column-2 .block-3.button_block a,
+			.row-18 .column-2 .block-3.button_block div,
+			.row-18 .column-2 .block-3.button_block span,
+			.row-19 .column-1 .block-4.button_block a,
+			.row-19 .column-1 .block-4.button_block div,
+			.row-19 .column-1 .block-4.button_block span,
+			.row-2 .column-2 .block-3.button_block a,
+			.row-2 .column-2 .block-3.button_block div,
+			.row-2 .column-2 .block-3.button_block span,
+			.row-20 .column-1 .block-4.button_block a,
+			.row-20 .column-1 .block-4.button_block div,
+			.row-20 .column-1 .block-4.button_block span,
+			.row-21 .column-1 .block-4.button_block a,
+			.row-21 .column-1 .block-4.button_block div,
+			.row-21 .column-1 .block-4.button_block span,
+			.row-3 .column-1 .block-4.button_block a,
+			.row-3 .column-1 .block-4.button_block div,
+			.row-3 .column-1 .block-4.button_block span,
+			.row-4 .column-1 .block-6.button_block a,
+			.row-4 .column-1 .block-6.button_block div,
+			.row-4 .column-1 .block-6.button_block span,
+			.row-7 .column-1 .block-3.button_block a,
+			.row-7 .column-1 .block-3.button_block div,
+			.row-7 .column-1 .block-3.button_block span,
+			.row-7 .column-1 .block-5.button_block a,
+			.row-7 .column-1 .block-5.button_block div,
+			.row-7 .column-1 .block-5.button_block span,
+			.row-8 .column-1 .block-3.button_block a,
+			.row-8 .column-1 .block-3.button_block div,
+			.row-8 .column-1 .block-3.button_block span,
+			.row-9 .column-1 .block-4.button_block a,
+			.row-9 .column-1 .block-4.button_block div,
+			.row-9 .column-1 .block-4.button_block span {
+				line-height: 32px !important;
+			}
+
+			.row-10 .column-1 .block-3.button_block .alignment,
+			.row-10 .column-2 .block-4.button_block .alignment,
+			.row-11 .column-1 .block-2.paragraph_block td.pad>div,
+			.row-11 .column-1 .block-4.button_block .alignment,
+			.row-11 .column-1 .block-6.paragraph_block td.pad>div,
+			.row-11 .column-1 .block-8.button_block .alignment,
+			.row-15 .column-1 .block-1.paragraph_block td.pad>div,
+			.row-15 .column-1 .block-3.button_block .alignment,
+			.row-16 .column-2 .block-3.button_block .alignment,
+			.row-17 .column-1 .block-1.paragraph_block td.pad>div,
+			.row-17 .column-1 .block-3.button_block .alignment,
+			.row-18 .column-2 .block-3.button_block .alignment,
+			.row-19 .column-1 .block-4.button_block .alignment,
+			.row-2 .column-2 .block-3.button_block .alignment,
+			.row-20 .column-1 .block-4.button_block .alignment,
+			.row-21 .column-1 .block-4.button_block .alignment,
+			.row-3 .column-1 .block-2.paragraph_block td.pad>div,
+			.row-3 .column-1 .block-4.button_block .alignment,
+			.row-4 .column-1 .block-6.button_block .alignment,
+			.row-5 .column-2 .block-1.button_block .alignment,
+			.row-6 .column-2 .block-1.button_block .alignment,
+			.row-7 .column-1 .block-3.button_block .alignment,
+			.row-7 .column-1 .block-5.button_block .alignment,
+			.row-8 .column-1 .block-1.paragraph_block td.pad>div,
+			.row-8 .column-1 .block-2.paragraph_block td.pad>div,
+			.row-8 .column-1 .block-3.button_block .alignment,
+			.row-9 .column-1 .block-2.paragraph_block td.pad>div,
+			.row-9 .column-1 .block-4.button_block .alignment {
+				text-align: center !important;
+			}
+
+			.row-12 .column-1 .block-2.paragraph_block td.pad>div,
+			.row-14 .column-1 .block-1.paragraph_block td.pad>div,
+			.row-21 .column-1 .block-2.paragraph_block td.pad>div,
+			.row-21 .column-1 .block-3.paragraph_block td.pad>div,
+			.row-3 .column-1 .block-1.paragraph_block td.pad>div {
+				text-align: center !important;
+				font-size: 30px !important;
+			}
+
+			.row-14 .column-1 .block-2.paragraph_block td.pad>div,
+			.row-15 .column-1 .block-2.paragraph_block td.pad>div,
+			.row-16 .column-2 .block-2.paragraph_block td.pad>div,
+			.row-17 .column-1 .block-2.paragraph_block td.pad>div,
+			.row-18 .column-2 .block-2.paragraph_block td.pad>div,
+			.row-3 .column-1 .block-3.paragraph_block td.pad>div {
+				text-align: center !important;
+				font-size: 14px !important;
+			}
+
+			.row-3 .column-1 .block-5.divider_block td.pad,
+			.row-4 .column-1 .block-1.divider_block td.pad {
+				padding: 10px 0 25px !important;
+			}
+
+			.row-3 .column-1 .block-5.divider_block .alignment,
+			.row-4 .column-1 .block-1.divider_block .alignment {
+				text-align: center !important;
+				font-size: 1px;
+			}
+
+			.row-4 .column-1 .block-2.paragraph_block td.pad>div,
+			.row-4 .column-1 .block-4.paragraph_block td.pad>div {
+				font-size: 30px !important;
+			}
+
+			.row-19 .column-1 .block-3.paragraph_block td.pad>div,
+			.row-20 .column-1 .block-3.paragraph_block td.pad>div,
+			.row-4 .column-1 .block-5.paragraph_block td.pad>div {
+				font-size: 14px !important;
+			}
+
+			.row-5 .column-2 .block-1.button_block td.pad,
+			.row-6 .column-2 .block-1.button_block td.pad {
+				padding: 30px !important;
+			}
+
+			.row-5 .column-2 .block-1.button_block a,
+			.row-5 .column-2 .block-1.button_block div,
+			.row-5 .column-2 .block-1.button_block span,
+			.row-6 .column-2 .block-1.button_block a,
+			.row-6 .column-2 .block-1.button_block div,
+			.row-6 .column-2 .block-1.button_block span {
+				line-height: 26px !important;
+			}
+
+			.row-7 .column-1 .block-2.paragraph_block td.pad>div,
+			.row-7 .column-1 .block-4.paragraph_block td.pad>div {
+				text-align: center !important;
+				font-size: 16px !important;
+			}
+
+			.row-7 .column-1 .block-2.paragraph_block td.pad {
+				padding: 15px !important;
+			}
+
+			.row-7 .column-1 .block-3.button_block td.pad,
+			.row-7 .column-1 .block-5.button_block td.pad {
+				padding: 0 !important;
+			}
+
+			.row-7 .column-1 .block-4.paragraph_block td.pad {
+				padding: 45px 15px 15px !important;
+			}
+
+			.row-8 .column-1 .block-1.paragraph_block td.pad,
+			.row-9 .column-1 .block-2.paragraph_block td.pad {
+				padding: 10px 20px 0 !important;
+			}
+
+			.row-7 .column-1 .block-6.divider_block td.pad {
+				padding: 25px 10px 10px !important;
+			}
+
+			.row-10 .column-1 .block-4.image_block td.pad,
+			.row-10 .column-2 .block-1.image_block td.pad,
+			.row-15 .column-2 .block-1.image_block td.pad,
+			.row-16 .column-1 .block-1.image_block td.pad,
+			.row-17 .column-2 .block-1.image_block td.pad,
+			.row-18 .column-1 .block-1.image_block td.pad,
+			.row-8 .column-2 .block-1.image_block td.pad,
+			.row-9 .column-1 .block-1.image_block td.pad {
+				padding: 0 15px !important;
+			}
+
+			.row-11 .column-1 .block-3.paragraph_block td.pad>div,
+			.row-11 .column-1 .block-7.paragraph_block td.pad>div,
+			.row-9 .column-1 .block-3.paragraph_block td.pad>div {
+				text-align: center !important;
+				font-size: 22px !important;
+			}
+
+			.row-9 .column-1 .block-3.paragraph_block td.pad {
+				padding: 10px 0 10px 20px !important;
+			}
+
+			.row-11 .column-1 .block-1.image_block td.pad {
+				padding: 0 35px !important;
+			}
+
+			.row-11 .column-1 .block-4.button_block td.pad,
+			.row-11 .column-1 .block-8.button_block td.pad {
+				padding: 15px 20px 0 !important;
+			}
+
+			.row-11 .column-1 .block-5.image_block td.pad {
+				padding: 40px 35px 0 !important;
+			}
+
+			.row-11 .column-1 .block-6.paragraph_block td.pad,
+			.row-19 .column-1 .block-1.image_block td.pad,
+			.row-20 .column-1 .block-1.image_block td.pad {
+				padding: 30px 20px 0 !important;
+			}
+
+			.row-11 .column-1 .block-2.paragraph_block td.pad {
+				padding: 20px 20px 0 !important;
+			}
+
+			.row-19 .column-1 .block-2.paragraph_block td.pad>div,
+			.row-20 .column-1 .block-2.paragraph_block td.pad>div {
+				text-align: center !important;
+				font-size: 20px !important;
+			}
+
+			.row-2 .column-1 {
+				padding: 15px 40px 15px 20px !important;
+			}
+
+			.row-10 .column-1,
+			.row-10 .column-2,
+			.row-2 .column-2,
+			.row-8 .column-2 {
+				padding: 15px 20px !important;
+			}
+
+			.row-3 .column-1 {
+				padding: 20px 0 0 !important;
+			}
+
+			.row-11 .column-1,
+			.row-14 .column-1,
+			.row-19 .column-1,
+			.row-20 .column-1,
+			.row-7 .column-1 {
+				padding: 30px 0 !important;
+			}
+
+			.row-15 .column-1,
+			.row-15 .column-2,
+			.row-17 .column-1,
+			.row-17 .column-2,
+			.row-8 .column-1,
+			.row-9 .column-1 {
+				padding: 30px 20px !important;
+			}
+		}
+	</style>
+<!--añadimos reglas css inline aplicadas, para prevenir que gmail o
+  yahoo traten de modificar algunos espacios dentro*/-->
+</head>
+<body style="margin:0; padding:0;" topmargin="0" leftmargin="0" marginheight="0"
+            marginwidth="0">
+<!--código condicional para outlook,previene que trate de aumentar el
+    tamaño de los spacers-->
+
+  <!--[if gte mso 15]>
+  <style type="text/css" media="all">
+  tr { font-size:1px; mso-line-height-alt:0; mso-margin-top-alt:1px; }
+</style>
+<![endif]-->
+<!--propiedades de la tabla contenedora-->
+<table height="100%" width="100%" border="0" cellspacing="0" cellpadding="0" bgcolor="#ebebeb">
+    <tr>
+        <td align="center" valign="top" style="line-height: 15px;" bgcolor="#ebebeb">
+        <!-- tabla de contenido -->
+                <span style="font-family: arial; font-size:12px; color: #4A4A4A;line-height: 15px;"><br> </br>Si no visualizas  bien este mailing haz click </span><a href="https://miogroup.com/" style="font-family: arial; font-size:12px;color:#4a7ab7;line-height:15px; text-decoration:underline;">Version online</a></br></br> </span>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table width="600" class="deviceWidth" border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#ffffff" style="border-collapse: collapse;">
+                <tr>
+                    <td align="center">
+                       <span> <br><img src="https://e00-elmundo.uecdn.es/promociones/mailing/2023/05/mail-oferta-1anyo-12eu-n-ult/img/logo.jpg" alt="El Mundo premium"class="deviceWidth" border="0" /><br> </span>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
