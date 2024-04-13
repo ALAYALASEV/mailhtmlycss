@@ -95,3 +95,9 @@ h1 {
   grid-template-columns: 1fr 2fr;
   text-align: left;
 }
+/* Media query para pantallas con un ancho máximo de 900px */
+@media (max-width: 600px) {
+  .pokemon-container {
+    grid-template-columns: 1fr;  /* Cambio a una sola columna */
+  }
+}
