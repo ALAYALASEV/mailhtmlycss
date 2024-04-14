@@ -17,7 +17,7 @@ h1 {
 
 .pokemon-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 30px;
   width: 80%;
   margin-left: auto;
@@ -30,14 +30,24 @@ h1 {
 .pokemon-block-back {
   border-radius: 10px;
   padding: 10px;
-  background-color: white;
   box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
+ border:none;
 }
 
 .img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Asegúrate que ocupa todo el ancho del contenedor padre */
+  height: 120px; /* Altura fija para mantener consistencia */
   background-image: url("./blob.svg");
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.img-container img {
+  max-width: 100%; /* Limita el ancho de la imagen al del contenedor */
+  max-height: 100%; /* Limita la altura de la imagen a la del contenedor */
 }
 
 .pokemon-block p {
@@ -95,6 +105,7 @@ h1 {
   grid-template-columns: 1fr 2fr;
   text-align: left;
 }
+
 /* Media query para pantallas con un ancho máximo de 900px */
 @media (max-width: 600px) {
   .pokemon-container {

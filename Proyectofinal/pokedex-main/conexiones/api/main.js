@@ -4,7 +4,7 @@ const spinner = document.querySelector("#spinner");
 function fetchAllPokemons() {
   spinner.style.display = "block";
   const promises = [];
-  for (let id = 1; id <= 1000; id++) {
+  for (let id = 1; id <= 1025; id++) {
     promises.push(fetchPokemon(id));
   }
   Promise.all(promises)
@@ -52,7 +52,7 @@ function createPokemon(pokemon) {
   spriteContainer.classList.add("img-container");
 
   const sprite = document.createElement("img");
-  sprite.src = pokemon.sprites.front_default;
+  sprite.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`;
 
   spriteContainer.appendChild(sprite);
 
