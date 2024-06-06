@@ -27,8 +27,6 @@
                     </a>
                 </li>
                 <li>
-                    <input class="redondearbordes" type="text" placeholder="Buscar">
-                    <button class="redondearbordes" id="searchBtn"><img width=15px height=15px src="../img/filtro.gif"></button>
                 </li>
                 <?php if (!isset($_SESSION['username'])) { ?>
                     <li><a href="/login">Login</a></li>

@@ -1,4 +1,3 @@
-<h1>My Teams</h1>
 <?php
 /*
 array (
@@ -46,28 +45,29 @@ array (
 ?>
 <!-- Iteracion de pokemon -->
 <?php foreach ($equipos as $equipo): ?>
-  <div class="equipo">
-    <h3><?= $equipo['nombre'] ?>
-      <a href="#renameModal" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md"
-        data-id="<?= $equipo['id'] ?>">Rename</a>
-    </h3>
-
-    <?php foreach ($equipo['seisPokemons'] as $pokemon): ?>
-      <?php if ($pokemon['id_pokemon'] != 0) { ?>
-        <div  
-           
-           onclick="confirmarEliminacion(<?=$pokemon['id_equipopokemon']?>)"
-           ><!-- .fin a tag -->
-          <img src="<?= $pokemon['art'] ?>" id="<?= $pokemon['id_equipopokemon'] ?>"
-            name="<?= $pokemon['id_equipopokemon'] ?>" class="w-48 h-48 mx-auto"
-            id="imagenLinkPokemon"><!-- end img tag -->
+  <div class="equipo" style="margin-bottom: 15px; overflow-x: auto; white-space: nowrap;"> <!-- Estilo añadido para desplazamiento horizontal -->
+    <div style="text-align: center;"> <!-- Contenedor centrado para el título y el botón -->
+      <div style="background-color: white; border-radius: 5px; display: inline-block; padding: 10px; margin-bottom: 10px;"> <!-- Estilo para el contenedor del título y botón -->
+        <h3 style="margin: 0; background-color:white; display: inline-flex; align-items: center; justify-content: center;"><?= htmlspecialchars($equipo['nombre']) ?></h3> <!-- Título -->
+        <a href="#renameModal" class="bg-blue-500 hover:bg-blue-700 text-white px-4 py-2 rounded-md"
+          data-id="<?= htmlspecialchars($equipo['id']) ?>" style="margin-left: 10px;">Rename</a> <!-- Botón -->
       </div>
+    </div>
 
-      <?php } ?>
-
-    <?php endforeach; ?>
+    <div style="text-align: center;"> <!-- Contenedor centrado para los Pokémon -->
+      <?php foreach ($equipo['seisPokemons'] as $pokemon): ?>
+        <?php if ($pokemon['id_pokemon'] != 0): ?>
+          <div onclick="confirmarEliminacion(<?= htmlspecialchars($pokemon['id_equipopokemon']) ?>)" style="display: inline-block; margin-right: 10px;">
+            <img src="<?= htmlspecialchars($pokemon['art']) ?>" id="<?= htmlspecialchars($pokemon['id_equipopokemon']) ?>"
+              name="<?= htmlspecialchars($pokemon['id_equipopokemon']) ?>" class="w-48 h-48"><!-- Imagen de Pokémon -->
+          </div>
+        <?php endif; ?>
+      <?php endforeach; ?>
+    </div>
   </div>
 <?php endforeach; ?>
+
+
 
 
 <!-- modal de eliminar pokemon -->
