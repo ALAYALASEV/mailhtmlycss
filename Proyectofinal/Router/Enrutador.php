@@ -2,9 +2,13 @@
 
 namespace Router;
 
+/*
 use conexiones\bbdd\Bbdd;
 use Controladores\HomeController;
 use Controladores\LoginController;
+use Controladores\PadreController;
+use Controladores\SignupController;
+use Controladores\EquiposController; */
 
 //Lee la URL y carga el controlador y el método definido en esa ruta en el public/index.php
 class Enrutador {
@@ -36,6 +40,7 @@ class Enrutador {
         //lo mismo pero con sintaxis dificil T^T
         //$path = $_SERVER['PATH_INFO'] ?? "/";
         $method = $_SERVER['REQUEST_METHOD'];
+        
         if ($method === 'GET') {
             $fn = $this->get_routes[$path];
         } else {
@@ -43,8 +48,17 @@ class Enrutador {
         }
 
         if (!$fn) { // Si la clase Controlador para la ruta no existe
-            header('Location: /404.php');
+            header('Location: /404');
         }
+
+        $class = $fn[0];
+        $methodName = $fn[1];
+
+        $instance = new $class();
+        call_user_func([$instance, $methodName]);
+        
+  
+        
         //mismo codigo pero mas ilegible :_
         //$fn = $method === 'GET'? $this->get_routes[$path] : $this->post_routes[$path];
         //if(!$fn) header('Location: /404.php');
@@ -56,17 +70,10 @@ class Enrutador {
         Como es una chapucilla pues hay que hacer algo parecido aqui y mantenerlos ambos "iguales"
         porque antes los metodos eran estaticos y con la ultima linea (ahora comentada) valía
         */
-        if ($path == "/") {
-            $c = new HomeController();
-            $c->home();
-            
-        } else if ($path == "/login") {
-            $c = new LoginController();
-            $c->mostrarLogin();
-        } //etc con mas else ifs
+
+        //etc con mas else ifs
         //call_user_func($fn, $this); //TENGO QUE ARREGLARLO CON IFS 
     }
 
 }
 
-?>
