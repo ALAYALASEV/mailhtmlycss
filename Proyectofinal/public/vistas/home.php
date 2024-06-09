@@ -28,6 +28,8 @@
     height: 80vh;
     max-width: 100vw;
     align-items: center;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
 }
 
 .pokemon-item {
@@ -62,7 +64,7 @@
     border-radius: 5px;
     background-color: #f0f0f0;
 }
-
+/*
 @media (max-width: 768px) {
     .pokemon-container {
         flex-direction: column;
@@ -70,21 +72,22 @@
         overflow-y: auto;
         align-items: center;
         width: 100%; /* Asegura que el contenedor ocupe todo el ancho de la pantalla */
-        min-height: 100vh; /* Asegura que el contenedor tenga al menos la altura de la ventana del navegador */
-    }
+        /*min-height: 100vh; /* Asegura que el contenedor tenga al menos la altura de la ventana del navegador */
+   /* }
 
     .pokemon-item {
         width: 70%; /* Hace las tarjetas más anchas en el espacio disponible */
-        height: auto; /* Altura automática para adaptarse al contenido */
-        margin: 10px; /* Añade margen alrededor de cada tarjeta para espacio */
-    }
+       /* height: auto;*/ /* Altura automática para adaptarse al contenido */
+       /* margin: 10px; /* Añade margen alrededor de cada tarjeta para espacio */
+   /* }
 
-    .pokemon-image {
-        margin-top: 10px; /* Espacio superior para la imagen */
-        height: 80%; /* Altura en porcentaje para la imagen */
-        object-fit: cover; /* Asegura que la imagen cubra el área designada sin perder proporción */
-    }
+    /*.pokemon-image {
+       /* margin-top: 10px; /* Espacio superior para la imagen */
+        /*height: 80%; /* Altura en porcentaje para la imagen */
+       /* object-fit: cover; /* Asegura que la imagen cubra el área designada sin perder proporción */
+   /* }
 }
+
 /* Colores para cada tipo de Pokémon */
 .tipo-fire { background-color: red; color: white; }
 .tipo-water { background-color: blue; color: white; }
