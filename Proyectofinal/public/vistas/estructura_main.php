@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +13,13 @@
     <!-- Tailwind CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
+
 <body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <img src="../img/abrir_2.gif">
+    </div>
+
     <header>
         <nav>
             <ul>
@@ -26,8 +33,15 @@
                         <?php endif; ?>
                     </a>
                 </li>
+
                 <li>
+                    <form action="search" method="GET">
+                        <input type="text" name="search" placeholder="Search Pokémon" style="color:black">
+                        <input type="submit" value="Search">
+                    </form>
+
                 </li>
+
                 <?php if (!isset($_SESSION['username'])) { ?>
                     <li><a href="/login">Login</a></li>
                 <?php } else if (isset($_SESSION['username'])) { ?>
@@ -38,9 +52,12 @@
     </header>
     <main>
         <?= $content ?>
+        <img src="../img/fondo_transp.png" alt="Background Image" class="background-image">
     </main>
     <footer></footer>
+
     <script src="../js/main.js" type="text/javascript"></script>
-    
+
 </body>
+
 </html>

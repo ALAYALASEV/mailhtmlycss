@@ -1,54 +1,79 @@
 <?php
 
 namespace conexiones\api;
-use Exception;
-//Documentacion pokeapi v2: https://pokeapi.co/docs/v2#pokemon
-/* Prueba en navegador
-fetch('https://pokeapi.co/api/v2/pokemon/ditto')
- .then(response => response.json())
- .then(data => console.log(data))
- .catch(error => console.error('Error:', error));
-*/
-class PokeApi {
-    private $curl = null;
-    private string $URLBase = 'https://pokeapi.co/api/v2/pokemon/';
-    public ?array $response = null; // Propiedad pública para almacenar la respuesta
-    public ?string $error = null;   // Propiedad pública para almacenar el error
 
-    public function construirLlamada(int $pokemonId) : void {
-        if ($pokemonId <= 0) throw new Exception("El id del pokemon no es válido: ".$pokemonId);
-        $this->curl = curl_init();
-        curl_setopt_array($this->curl, array(
-            CURLOPT_URL => $this->URLBase. $pokemonId,
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1, // Corregido aquí
-            CURLOPT_CUSTOMREQUEST => "GET",
-            CURLOPT_POSTFIELDS => "",
-        ));
+use Exception;
+
+//para guzzle:
+require __DIR__ . '/../../vendor/autoload.php';
+
+use GuzzleHttp\Client;
+use GuzzleHttp\Promise;
+use GuzzleHttp\Exception\RequestException;
+use modelos\SimpleCache;
+
+
+class PokeApi {
+    //uso con guzzle:
+    private $client;
+    private string $URLBase = 'https://pokeapi.co/api/v2/pokemon/';
+    private string $URLBaseSpecies = 'https://pokeapi.co/api/v2/pokemon-species/'; //para la descripcion!
+    public ?array $response = null;
+    public ?string $error = null;
+    private $cache;
+
+    public function __construct() {
+        $this->client = new Client();
+        $this->cache = new SimpleCache(); // Instanciar la caché
+    }
+    /**
+     * Llamada para casi todos los datos necesarios de la pokeapi
+     */
+    public function construirLlamada(int $pokemonId) {
+        if ($pokemonId <= 0)
+            throw new Exception("El id del pokemon no es válido: " . $pokemonId);
+        return $this->client->getAsync($this->URLBase . $pokemonId);
     }
 
-    /**
-     * @return response Y TRUE! para poder compararlo y saber si va bien
-     */
-    public function llamarApi() {
-        $responseRaw = curl_exec($this->curl);
-        $this->error = curl_error($this->curl);
-        //var_dump($this->error, $responseRaw);die;
-        // Cierra la sesión cURL
-        curl_close($this->curl);
-        if ($this->error) {
-            $this->error = "Hubo un error al llamar a la API: {$this->error}";
-        } else {
-            $this->response = json_decode($responseRaw, true);
+ 
+    public function getPokemonData(int $pokemonId) {
+        $cacheKey = "pokemon_{$pokemonId}"; //revisar cache antes:
+        $cachedData = $this->cache->get($cacheKey);
+        if ($cachedData) {
+            return $cachedData;
+        }
+        try {
+            $response = $this->construirLlamada($pokemonId)->wait();
+            $data = json_decode($response->getBody(), true);
+            $this->cache->set($cacheKey, $data, 3600); // TTL de 1 hora
+            return $data;
+        } catch (RequestException $e) {
+            $this->error = $e->getMessage();
+            return null;
         }
     }
 
 
+    /**
+     * Llamada exclusiva para conseguir la descripcion del pokemon
+     */
+    public function construirLlamadaEspecies(int $pokemonId) {
+        if ($pokemonId <= 0)
+            throw new Exception("El id del pokemon no es válido: " . $pokemonId);
+        return $this->client->getAsync($this->URLBaseSpecies . $pokemonId);
+    }
 
-    public function getResponse(){
+    public function getPokemonEspeciesData(int $pokemonId) {
+        
+        try {
+            $responseSpecies = $this->construirLlamadaEspecies($pokemonId)->wait();
+            $data = json_decode($responseSpecies->getBody(), true);
+            //$data = array_merge($data, $dataSpecies);
+            
+            return $data;
+        } catch (RequestException $e) {
+            $this->error = $e->getMessage();
+            return null;
+        }
     }
 }
-
