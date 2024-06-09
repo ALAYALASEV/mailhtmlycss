@@ -1,25 +1,16 @@
-
-<?php
-/*
-testeo de parámetros de sesión
-esta será la lista con todos los Pokémon
-cuando se clickee a uno en concreto y abra su página con url /ficha
-debe tener el id del Pokémon como parámetro GET
-ejemplo: /ficha?id_pokemon=25
-*/
-?>
-
 <div class="pokemon-container" style="opacity: 0;" id="pokemonContainer">
-    <?php foreach ($pokedex as $pokemon) :?>
+    <?php foreach ($pokedex as $pokemon) : ?>
         <div class="pokemon-item">
             <a href="/card?id_pokemon=<?= $pokemon['id'] ?>">
                 <img id="<?= $pokemon['id'] ?>" 
                      src="<?= $pokemon['art'] ?>"
-                     class="pokemon-image w-48 h-48 mx-auto"><!-- end of img tag -->
+                     class="pokemon-image w-48 h-48 mx-auto">
             </a>
-            <div class="types-container">
+            <div class="types-container flex flex-wrap justify-center">
                 <?php foreach ($pokemon['tipos'] as $tipo) : ?>
-                    <p class="type-text"> <?= $tipo ?> </p>
+                    <div class="tipo-<?= strtolower($tipo) ?> rounded-full px-3 py-1 mx-1">
+                        <p style="color: white;"><?= $tipo ?></p>
+                    </div>
                 <?php endforeach; ?>
             </div>
             <br>
@@ -28,73 +19,92 @@ ejemplo: /ficha?id_pokemon=25
 </div>
 
 <style>
-    
+.pokemon-container {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 20px;
+    gap: 10px;
+    height: 80vh;
+    max-width: 100vw;
+    align-items: center;
+}
+
+.pokemon-item {
+    flex: 0 0 auto;
+    width: 230px;
+    height: 350px;
+    background-color: transparent;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    overflow: hidden;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.pokemon-image {
+    width: 100%;
+    height: auto;
+}
+
+.types-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Permite que los tipos se envuelvan */
+}
+
+.type-text {
+    text-align: center;
+    border: 1px solid #000;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+}
+
+@media (max-width: 768px) {
     .pokemon-container {
-        display: flex;
-        flex-wrap: nowrap; /* Mantener nowrap para desplazamiento horizontal */
-        overflow-x: auto; /* Desplazamiento horizontal */
-        padding: 20px;
-        gap: 10px; /* Espacio entre elementos */
-        height: 80vh; /* Altura fija para permitir el desplazamiento */
-        max-width: 100vw; /* Ancho máximo para evitar desbordamiento */
-        align-items: center; /* Centra los items verticalmente en el contenedor */
+        flex-direction: column;
+        overflow-x: hidden;
+        overflow-y: auto;
+        align-items: center;
+        width: 100%; /* Asegura que el contenedor ocupe todo el ancho de la pantalla */
+        min-height: 100vh; /* Asegura que el contenedor tenga al menos la altura de la ventana del navegador */
     }
 
     .pokemon-item {
-    flex: 0 0 auto;
-    width: 230px; /* Ancho de cada elemento */
-    height: 350px; /* Altura aumentada para todas las tarjetas */
-    background-color: transparent; /* Fondo transparente */
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    overflow: hidden; /* Para manejar el desbordamiento del contenido */
-    text-align: center;
-    margin: 10px 0; /* Espacio superior e inferior para no tocar los bordes del contenedor */
-}
+        width: 70%; /* Hace las tarjetas más anchas en el espacio disponible */
+        height: auto; /* Altura automática para adaptarse al contenido */
+        margin: 10px; /* Añade margen alrededor de cada tarjeta para espacio */
+    }
 
     .pokemon-image {
-        width: 100%; /* Ancho de la imagen ajustado al contenedor */
-        height: auto; /* Altura automática para mantener la proporción */
+        margin-top: 10px; /* Espacio superior para la imagen */
+        height: 80%; /* Altura en porcentaje para la imagen */
+        object-fit: cover; /* Asegura que la imagen cubra el área designada sin perder proporción */
     }
-
-    .types-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-    }
-
-    .type-text {
-        text-align: center;
-        border: 1px solid #000;
-        padding: 10px;
-        margin: 5px 0;
-        border-radius: 5px;
-        background-color: #f0f0f0;
-    }
-
-    @media (max-width: 768px) {
-        .pokemon-container {
-            flex-direction: column; /* Cambia la dirección del flex a vertical */
-            overflow-x: hidden; /* Desactiva el desplazamiento horizontal */
-            overflow-y: auto; /* Activa el desplazamiento vertical si es necesario */
-            align-items: center; /* Asegura que los elementos estén centrados horizontalmente */
-            height: auto; /* Ajusta la altura automáticamente según el contenido */
-        }
-
-        .pokemon-item {
-            width: %; /* Hace las tarjetas más anchas en el espacio disponible */
-            height: auto; /* Altura automática para adaptarse al contenido */
-            margin: 10px; /* Añade margen alrededor de cada tarjeta para espacio */
-        }
-
-        .pokemon-image {
-            margin-top: 10px; /* Espacio superior para la imagen */
-            height: 200px; /* Altura fija para la imagen */
-            object-fit: cover; /* Asegura que la imagen cubra el área designada sin perder proporción */
-        }
-    }
+}
+/* Colores para cada tipo de Pokémon */
+.tipo-fire { background-color: red; color: white; }
+.tipo-water { background-color: blue; color: white; }
+.tipo-grass { background-color: green; color: white; }
+.tipo-ghost { background-color: purple; color: white; }
+.tipo-normal { background-color: gray; color: white; }
+.tipo-fighting { background-color: orange; color: black; }
+.tipo-bug { background-color: lime; color: white; }
+.tipo-dark { background-color: black; color: white; }
+.tipo-electric { background-color: gold; color: black; }
+.tipo-fairy { background-color: pink; color: white; }
+.tipo-rock { background-color: brown; color: white; }
+.tipo-flying { background-color: skyblue; color: black; }
+.tipo-psychic { background-color: magenta; color: white; }
+.tipo-poison { background-color: darkgreen; color: white; }
+.tipo-ground { background-color: sienna; color: white; }
+.tipo-steel { background-color: silver; color: black; }
+.tipo-dragon { background-color: indigo; color: white; }
+.tipo-ice { background-color: cyan; color: black; }
+.tipo-unknown { background-color: beige; color: black; }
 </style>
 
 <script>
