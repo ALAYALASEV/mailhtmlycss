@@ -27,24 +27,28 @@
 
 /* Background Gradient */
 body {
-    background-image: linear-gradient(to bottom, #019fff, #74d5ff);
-    background-attachment: fixed;
-    z-index: -2; /* Behind background image */
-    opacity: 1; /* Always visible */
+  font-family: 'Rubik', sans-serif;
+  background: linear-gradient(to bottom, #019fff, #74d5ff), url('fondo.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh; /* Ensure the body covers the full viewport height */
+  position: relative;
 }
 
-/* Background Image */
 .background-image {
-    opacity: 0; /* Initially hidden */
-    transition: opacity 0.8s ease-in-out; /* Define transition for fade-in */
-    position: absolute; /* Position over the gradient */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('imagen-inexistente-a-proposito.jpg');
-    background-size: cover;
-    z-index: -1;
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.8s ease-in-out; /* Define transition for fade-in */
+  position: absolute; /* Position over the gradient */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; /* Ahora esto se refiere al 100% de la altura del elemento padre */
+  background-size: cover;
+  z-index: -1;
 }
 
 .pokemon-container {

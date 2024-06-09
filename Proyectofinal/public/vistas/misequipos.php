@@ -68,20 +68,16 @@ array (
     <!-- Contenedor centrado y flexible para los botones "View" -->
     <?php foreach ($equipo['seisPokemons'] as $pokemon): ?>
         <?php if ($pokemon['id_pokemon'] != 0): ?>
-            <a href="http://localhost:8080/card?id_pokemon=<?= htmlspecialchars($pokemon['id_pokemon']) ?>" 
+            <a href="card?id_pokemon=<?= htmlspecialchars($pokemon['id_pokemon']) ?>" 
                class="bg-yellow-500 hover:bg-yellow-700 text-white px-2 py-1 rounded-md mt-2 block text-center" 
                style="width: 12rem; margin-right: 10px;">View</a> <!-- Botón movido, con ancho ajustado y margen añadido -->
         <?php endif; ?>      
     <?php endforeach; ?>
-</div>
+    </div>
     </div>
   <?php endforeach; ?>
 </div>
-
-
-
-
-
+<br><br>
 <!-- Modal de eliminar Pokémon -->
 <div id="modal-conf-eliminacion" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
   <div class="relative p-4 w-full max-w-md max-h-full">
@@ -112,9 +108,9 @@ array (
     <h2 class="text-xl font-semibold mb-4">Change Team's Name</h2>
     <form id="teamRenameForm">
       <input type="hidden" id="teamId" name="equipoId"> <!-- Campo oculto para el ID del equipo -->
-      <input type="text" placeholder="Nuevo nombre del equipo" class="border p-2 w-full mb-4" id="nuevoNombreEquipo" name="nuevoNombre"> <!-- Campo de entrada para el nuevo nombre -->
+      <input type="text" placeholder="New team name" class="border p-2 w-full mb-4" id="nuevoNombreEquipo" name="nuevoNombre"> <!-- Campo de entrada para el nuevo nombre -->
       <button id="confirmRenameButton" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md" type="submit">Confirm</button>
-      <button id="closeRenameModal" class="text-gray-500 hover:text-gray-600 ml-2">Cerrar</button>
+      <button id="closeRenameModal" class="text-gray-500 hover:text-gray-600 ml-2">Close</button>
     </form>
   </div>
 </div>
@@ -143,7 +139,7 @@ array (
   }
 
   .pokemon-img-container:hover::after {
-    content: 'Click to delete';
+    content: 'Click to remove';
     position: absolute;
     top: 50%;
     left: 50%;
@@ -155,6 +151,13 @@ array (
     white-space: nowrap;
     z-index: 10;
   }
+  #modal-conf-eliminacion {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-15%, -15%);
+  z-index: 50;
+}
 </style>
 
 <script src="../js/editar-equipos.js" type="text/javascript"></script>
