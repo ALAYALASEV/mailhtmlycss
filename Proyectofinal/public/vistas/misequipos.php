@@ -149,6 +149,20 @@ array (
     white-space: nowrap;
     z-index: 10;
   }
+  @media (max-width: 600px) {
+    .pokemon-img-container img, .view-button {
+      width: 100px;  /* Ajusta este valor según tus necesidades */
+      height: auto;
+    }
+
+    .pokemon-img-container:hover::after {
+      font-size: 10px;  /* Ajusta este valor según tus necesidades */
+    }
+
+    .view-button {
+      height: auto;
+    }
+  }
 </style>
 
 <script src="../js/editar-equipos.js" type="text/javascript"></script>
