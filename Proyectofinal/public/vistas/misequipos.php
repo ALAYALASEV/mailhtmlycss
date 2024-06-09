@@ -68,9 +68,9 @@ array (
     <!-- Contenedor centrado y flexible para los botones "View" -->
     <?php foreach ($equipo['seisPokemons'] as $pokemon): ?>
         <?php if ($pokemon['id_pokemon'] != 0): ?>
-            <a href="card?id_pokemon=<?= htmlspecialchars($pokemon['id_pokemon']) ?>" 
-               class="bg-yellow-500 hover:bg-yellow-700 text-white px-2 py-1 rounded-md mt-2 block text-center" 
-               style="width: 12rem; margin-right: 10px;">View</a> <!-- Botón movido, con ancho ajustado y margen añadido -->
+          <a href="card?id_pokemon=<?= htmlspecialchars($pokemon['id_pokemon']) ?>" 
+            class="view-button-mobile bg-yellow-500 hover:bg-yellow-700 text-white px-2 py-1 rounded-md mt-2 block text-center" 
+            style="width: 12rem; margin-right: 10px;">View</a>
         <?php endif; ?>      
     <?php endforeach; ?>
     </div>
@@ -150,7 +150,7 @@ array (
     z-index: 10;
   }
   @media (max-width: 600px) {
-    .pokemon-img-container img, .view-button {
+    .pokemon-img-container img {
       width: 100px;  /* Ajusta este valor según tus necesidades */
       height: auto;
     }
@@ -159,8 +159,8 @@ array (
       font-size: 10px;  /* Ajusta este valor según tus necesidades */
     }
 
-    .view-button {
-      height: auto;
+    .view-button-mobile {
+      display: none;  /* Oculta el botón "View" */
     }
   }
 </style>
