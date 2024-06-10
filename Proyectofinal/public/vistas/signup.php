@@ -11,7 +11,7 @@
     <!-- aqui debe haber una validacion de js que asegure que ambas contraseñas son iguales -->
     <input type="password" id="password2" name="password2" style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;"><br>
     
-    <input type="submit" value="Sign up" style="width: 100%; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
+    <input type="submit" value="Sign up" style="width: 100%; padding: 10px; background-color: #FFAA00; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
 </form>
 <p> Already have an account? <a href="/login">Log in here</a></p>
 </div>

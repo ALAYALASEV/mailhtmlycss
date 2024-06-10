@@ -8,7 +8,7 @@ y si hay que modificar el index.php y alguna cosa mas
         <input type="text" id="username" name="username" style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;"><br>
         <label for="password">Password:</label><br>
         <input type="password" id="password" name="password" style="width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;"><br>
-        <input type="submit" value="Log In" style="width: 100%; padding: 10px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
+        <input type="submit" value="Log In" style="width: 100%; padding: 10px; background-color: #FFAA00; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
     </form>
     <p style="margin-top: 10px;"> Don't have an account? <a href="/signup">Register here</a></p>
 </div>

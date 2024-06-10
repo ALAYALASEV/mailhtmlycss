@@ -40,7 +40,7 @@
         <li class="search-container">
             <form action="search" method="GET" class="search-form">
                 <input type="text" name="search" placeholder="Search Pokémon" class="search-input">
-                <input type="submit" value="Search" class="search-button">
+                <input type="submit" value="Search" style="background-color:#FFAA00;" class="search-button">
             </form>
         </li>
     </ul>

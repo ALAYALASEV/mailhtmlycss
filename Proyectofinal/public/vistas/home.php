@@ -1,6 +1,6 @@
 <div class="pokemon-container" style="opacity: 0;" id="pokemonContainer">
     <?php foreach ($pokedex as $pokemon) : ?>
-        <div class="pokemon-item">
+        <div class="pokemon-item align-center">
             <a href="/card?id_pokemon=<?= $pokemon['id'] ?>">
                 <img id="<?= $pokemon['id'] ?>" 
                      src="<?= $pokemon['art'] ?>"
@@ -19,6 +19,8 @@
 </div>
 
 <style>
+/* Estilos generales */
+/* Estilos generales */
 .pokemon-container {
     display: flex;
     flex-wrap: nowrap;
@@ -64,28 +66,33 @@
     border-radius: 5px;
     background-color: #f0f0f0;
 }
-/*
+
+/* Consulta de medios para dispositivos móviles */
 @media (max-width: 768px) {
     .pokemon-container {
-        flex-direction: column;
-        overflow-x: hidden;
-        overflow-y: auto;
+        flex-direction: column; /* Cambia la dirección a columna */
+        overflow-x: scroll; /* Activar el desplazamiento horizontal */
+        overflow-y: auto; /* Desactivar el desplazamiento vertical */
         align-items: center;
-        width: 100%; /* Asegura que el contenedor ocupe todo el ancho de la pantalla */
-        /*min-height: 100vh; /* Asegura que el contenedor tenga al menos la altura de la ventana del navegador */
-   /* }
-
+        width: auto; /* Asegura que el contenedor ocupe todo el ancho de la pantalla */
+        min-height: 100vh; /* Asegura que el contenedor tenga al menos la altura de la ventana del navegador */
+    }
     .pokemon-item {
         width: 70%; /* Hace las tarjetas más anchas en el espacio disponible */
-       /* height: auto;*/ /* Altura automática para adaptarse al contenido */
-       /* margin: 10px; /* Añade margen alrededor de cada tarjeta para espacio */
-   /* }
+        height: auto; /* Altura automática para adaptarse al contenido */
+        margin: 10px; /* Añade margen alrededor de cada tarjeta para espacio */
+    }
 
-    /*.pokemon-image {
-       /* margin-top: 10px; /* Espacio superior para la imagen */
-        /*height: 80%; /* Altura en porcentaje para la imagen */
-       /* object-fit: cover; /* Asegura que la imagen cubra el área designada sin perder proporción */
-   /* }
+    .pokemon-image {
+        margin-top: 10px; /* Espacio superior para la imagen */
+        height: 80%; /* Altura en porcentaje para la imagen */
+        object-fit: cover; /* Asegura que la imagen cubra el área designada sin perder proporción */
+    }
+}
+@media (min-width: 769px) {
+    .pokemon-container {
+        overflow-x: hidden; /* Desactiva el desplazamiento horizontal */
+    }
 }
 
 /* Colores para cada tipo de Pokémon */
@@ -108,6 +115,7 @@
 .tipo-dragon { background-color: indigo; color: white; }
 .tipo-ice { background-color: cyan; color: black; }
 .tipo-unknown { background-color: beige; color: black; }
+
 </style>
 
 <script>

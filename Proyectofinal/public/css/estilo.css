@@ -234,7 +234,7 @@ salga el simbolo - de quitar pokemon del equipo */
         margin-right: 10px; /* Añade menos espacio a la derecha en pantallas pequeñas */
     }
 }
-.search-container {
+.b-container {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -250,8 +250,7 @@ salga el simbolo - de quitar pokemon del equipo */
     height: 40px; /* Altura común */
     padding: 5px; /* Espacio interno común */
     box-sizing: border-box; /* Asegura que el padding se incluya en el tamaño total */
-    border: 1px solid #ccc; /* Bordes comunes */
-    border-radius: 5px; /* Bordes redondeados comunes */
+    border-radius: 20px; /* Bordes redondeados comunes */
     font-size: 16px; /* Tamaño de fuente común */
 }
 
